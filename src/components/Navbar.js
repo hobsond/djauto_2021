@@ -130,7 +130,7 @@ const DropComponent = React.forwardRef((props,ref) => {
         <h3
             onClick={() => {
                 push('/contact')
-                gsap.to(window,{scrollTo:'.contactData'})
+                gsap.to(window,{scrollTo:'.contactData' })
             props.setShow(false)
 
             }}
