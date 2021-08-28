@@ -62,17 +62,17 @@ export default function CompanyInfo() {
 
             <InfoItem
                 title={"Buy,Sell, Trade"}
-                p={"We offer fair pricing on trade in and purchasing of vehichles"}
+                p={"We offer fair pricing  on vehicle trade ins"}
                 />
             <InfoItem
                 title={"Test Driving Available"}
-                p={"We offer fair pricing on trade in and purchasing of vehichles"}
+                p={"Test drive any vehicle to see which is right with you"}
                 />
             <InfoItem
                 title={"Schedule an Appointment"}
-                    p={"We offer fair pricing on trade in and purchasing of vehichles"}
-                    cta={'Schedule Now>>'}
-                    link={'contact'}
+                    p={"Call us today or send us a message to schedule"}
+                    // cta={'Schedule Now>>'}
+                    // link={'contact'}
                 />
             </div>
 
