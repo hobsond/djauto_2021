@@ -10,7 +10,7 @@ color:white;
 `
 
 
-const dbUrl ="http://localhost:4400/user"
+ const dbUrl = process.env.REACT_APP_DBURL
 
 export default class Inventory extends Component {
     static propTypes = {
@@ -27,9 +27,10 @@ export default class Inventory extends Component {
     componentDidMount() {
     axios.get(`${dbUrl}/inventory`)
         .then(res => {
+            console.log(res.data)
             this.setState({inventory : res.data})
         })
-            .catch(err => console.log(err))
+            .catch(err => console.log({err}))
   
     }
 
@@ -48,7 +49,8 @@ export default class Inventory extends Component {
                                 <CarItem
                                     details={[1, 2]}
                                     carImg={i.photoUrls[i.photoUrls.length - 1]}
-                                    item = {i}
+                                    item={i}
+                                    key={i.vin}
                                 />
                             </div>
                         })
