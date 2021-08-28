@@ -1,0 +1,85 @@
+import React from 'react'
+import styled from 'styled-components'
+import UsedTags from './UsedTags'
+import { useHistory } from 'react-router'
+import companyBkg from './companyBkg.jpeg'
+const CompanyCont = styled.div`
+/* height:150vh; */
+background: rgba(255,255,255,.85);
+padding-top:5%;
+padding-bottom:3%;
+background-image: url(${companyBkg});
+background-size:cover;
+background-position:center;
+background-blend-mode: lighten;
+/* margin-top: -5%; */
+#infoItem_container{
+    margin-top: 10%;
+    display: flex;
+    flex-direction: column;
+}
+`
+
+const InfoItemCont = styled.div`
+color:black;
+width:60%;
+margin:0 auto;
+margin-top:5%;
+.infoItemTitle{
+    color:red;
+    font-size:1.4rem;
+}
+.infoItemP{
+    margin-top: 3%;
+    font-size:1.4rem;
+}
+.infoItemLink{
+    color:red;
+}
+
+`
+const InfoItem = ({ title, p, cta,link }) => {
+    const {push} = useHistory()
+    return <InfoItemCont>
+        <h3 className='infoItemTitle'>{title}</h3>
+        <p className="infoItemP"> {p}</p>
+        {
+            cta ?
+                <p className='infoItemLink' onClick={() => push(`/${link}`)}>{cta}</p>
+                :
+                null
+                
+        }
+
+    </InfoItemCont>
+    
+}
+export default function CompanyInfo() {
+    return (
+        <CompanyCont>
+            <UsedTags />
+            <div id='infoItem_container'>
+
+            <InfoItem
+                title={"Buy,Sell, Trade"}
+                p={"We offer fair pricing on trade in and purchasing of vehichles"}
+                />
+            <InfoItem
+                title={"Test Driving Available"}
+                p={"We offer fair pricing on trade in and purchasing of vehichles"}
+                />
+            <InfoItem
+                title={"Schedule an Appointment"}
+                    p={"We offer fair pricing on trade in and purchasing of vehichles"}
+                    cta={'Schedule Now>>'}
+                    link={'contact'}
+                />
+            </div>
+
+          
+           
+            
+            
+        </CompanyCont>
+    )
+}
