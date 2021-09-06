@@ -1,8 +1,13 @@
 import React, { useEffect, useState, useRef } from 'react'
 import styled from 'styled-components'
 import Na from './notAvailable.png'
-import gsap,{Power1} from 'gsap'
+import gsap, { Power1 } from 'gsap'
+import downArrow from './dwnArrow.png'
+import xMark from './x-mark.png'
+import { ReactComponent as DwnCircle } from './dwnCircle3.svg'
+import {ReactComponent as X} from './remove.svg'
 const CarItemStyled = styled.div`
+
 padding-bottom: 4%;
 .carItemImg{
     width:98%;
@@ -69,6 +74,28 @@ padding-bottom: 4%;
         padding:.56rem .3rem;
     }
 }
+
+.dwnCircle{
+    position: relative;
+    bottom:10%;
+    width:60%;
+    height:55%;
+    /* border:solid red 1px; */
+    #path3{
+        fill:black;
+        /* outline:white; */
+    }
+}
+#xMark{
+    width:50%;
+    height: 40%;
+    /* border:solid black 1px; */
+    position: relative;
+    left:32%;
+    #circle_bkg{
+        fill:blue;
+    }
+}
 `
 
 
@@ -133,7 +160,8 @@ export default function CarItem({
                                     }}
                                     className='detailsIcon_cont'
                                 >
-                                    details icon
+                                    {/* <img className='open-close' src={downArrow} alt='down arrow'/> */}
+                                    <DwnCircle className='dwnCircle' style={ {fill:'yellow'}}/>
                                 </div>
                                 :
                                         <div
@@ -150,7 +178,10 @@ export default function CarItem({
                                     }}
                                     className='detailsIcon_cont'
                                 >
-                                    Close
+                                    {/* close */}
+                                    {/* <img className='open-close' src={xMark} alt='down arrow'/> */}
+                                    <X id='xMark'/>
+
                                 </div>
                         }
                     </>
