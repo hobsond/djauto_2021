@@ -1,11 +1,24 @@
 import React, { useEffect, useState, useRef } from 'react'
 import styled from 'styled-components'
 import Na from './notAvailable.png'
-import gsap,{Power1} from 'gsap'
+import gsap, { Power1 } from 'gsap'
+import downArrow from './dwnArrow.png'
+import xMark from './x-mark.png'
+import { ReactComponent as DwnCircle } from './dwnCircle3.svg'
+import {ReactComponent as X} from './remove.svg'
 const CarItemStyled = styled.div`
+
+padding-top:10%;
 padding-bottom: 4%;
+@media (min-width:700px){
+}
 .carItemImg{
     width:98%;
+    @media (min-width:700px){
+        width:30%;
+        height:40vh;
+
+    }
 }
 .carPrice{
     margin-top: 3%;
@@ -20,6 +33,10 @@ padding-bottom: 4%;
     overflow:hidden;
     display: flex;
     flex-direction: column;
+    @media (min-width:700px){
+        margin-top:2%
+
+    }
 
     .detailsList{
         /* -webkit-clip-path: inset(0 0 100% 0); */
@@ -29,7 +46,7 @@ padding-bottom: 4%;
         margin-top:1%;
         list-style:none;
         li{
-            margin-top:8%;
+            margin-top:6%;
             display:flex;
             align-items: baseline;
             justify-content: center;
@@ -43,6 +60,9 @@ padding-bottom: 4%;
             }
         }
         text-align:left;
+        @media (min-width:700px){
+            margin-top:3%;
+        }
     }
 }
 .detailTitleBox{
@@ -67,6 +87,32 @@ padding-bottom: 4%;
         border-radius:.5rem;
         margin-bottom:4%;
         padding:.56rem .3rem;
+    }
+}
+
+.dwnCircle{
+    position: relative;
+    bottom:10%;
+    width:60%;
+    height:55%;
+    /* border:solid red 1px; */
+    #path3{
+        fill:black;
+        /* outline:white; */
+    }
+}
+#xMark{
+    width:50%;
+    height: 40%;
+    /* border:solid black 1px; */
+    position: relative;
+    left:32%;
+    
+    #circle_bkg{
+        fill:blue;
+    }
+    @media (min-width:700px){
+        width:10%;
     }
 }
 `
@@ -118,7 +164,6 @@ export default function CarItem({
             <CarItemStyled className='carItem' ref={ref}>
             <img className='carItemImg' src={ photos ? photos[photos.length - 1] :Na} alt={carTitle} />
             <h2 className='carTitle'>{title}</h2>
-            {/* <h3 className='carPrice'>{price}</h3> */}
             <div className='detailsBox' ref={detailRef}>
                     <div className='detailTitleBox'>
                     <h4 className='detailsTitle'>Details</h4>
@@ -133,7 +178,8 @@ export default function CarItem({
                                     }}
                                     className='detailsIcon_cont'
                                 >
-                                    details icon
+                                    {/* <img className='open-close' src={downArrow} alt='down arrow'/> */}
+                                    <DwnCircle className='dwnCircle' style={ {fill:'yellow'}}/>
                                 </div>
                                 :
                                         <div
@@ -150,7 +196,8 @@ export default function CarItem({
                                     }}
                                     className='detailsIcon_cont'
                                 >
-                                    Close
+                                    <X id='xMark'/>
+
                                 </div>
                         }
                     </>

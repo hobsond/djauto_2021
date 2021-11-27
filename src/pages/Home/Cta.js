@@ -1,9 +1,11 @@
-import React from 'react'
+import React,{useRef,useEffect,useState} from 'react'
 import styled from 'styled-components'
 import bkg from './bkg1.jpeg'
+import { useHistory, } from 'react-router-dom'
+import gsap from 'gsap'
 
 const CtaComponent = styled.div`
-height:90vh;
+height:fit-content;
 background-image:url(${bkg});
 background-repeat:no-repeat;
 background-size:cover;
@@ -34,7 +36,8 @@ align-items: center;
     z-index: 100;
     #info1{
 font-size: 1.2rem;
-margin-bottom:10%;
+color:red;
+margin-bottom:2%;
     }
     #info2{
         width:75%;
@@ -43,8 +46,12 @@ margin-bottom:10%;
         margin-bottom: 2%;
     }
     #info3{
-        width:70%;
-        font-size: 1.6rem;
+        width:90%;
+        margin:0 auto;
+        text-align: center;
+        font-size: 1.1em;
+        margin-bottom: 10%;
+      
     }
 
 }
@@ -70,13 +77,14 @@ margin-bottom:10%;
             margin-left: 14%;
             text-align: left;
             width:90%;
-            font-size: 4rem;
+            font-size: 2.5rem;
         }
         #info3{
             margin-left:15%;
             font-size: 2rem;
             /* border:solid 1px white; */
-            width:80%;
+            text-align: left;
+            width:100%;
         }
     }
     #ctaBtn{
@@ -97,11 +105,30 @@ margin-bottom:10%;
 }
 
 // Extra large devices (large desktops, 1200px and up)
-@media (min-width: 1200px) { }
 
+  @media (min-width: 1200px) {
+  
+    .infoCont{
+        #info3{
+            width:60%
+        }
+    }
+}
 
 `
 export default function Cta() {
+    const { push } = useHistory()
+    const info1 = useRef()
+    const info2= useRef()
+    const info3 = useRef()
+    useEffect(() => {
+        const tl = gsap.timeline()
+        tl
+        .from(`#info1`,{opacity:0,x:-100})
+        .from(`#info2`,{delay:.5,opacity:0,x:-100},)
+        .from(`#info3`,{opacity:0,x:100},'-=.6')
+        .from(`#ctaBtn`,{opacity:0,y:50})
+    },[])
     return (
         <CtaComponent>
           {  /*========================*/}
@@ -109,15 +136,23 @@ export default function Cta() {
             <div id='infoItems'>
 
             <div className='infoCont'>
-                <h4 id='info1'>Financing options available </h4>
+                    <h4
+                        ref={info1.current}
+                        id='info1'>Financing options available </h4>
             </div>
 
             <div  className='infoCont'>
-                <h2 id='info2'> Where Budget <br/> Meets Quality</h2>
+                    <h2
+                        ref={info2}
+                        
+                        id='info2'> Where Budget <br /> Meets Quality</h2>
             </div>
 
             <div  className='infoCont'>
-                <p id='info3'>
+                    <p id='info3'
+                        ref={info3}
+                        
+                    >
                     Shop the best quality used vehicles that can fit any budget. We have new vehicles arriving weekly and sales events happening all of the time. Check out our current inventory and contact us for us any questions you may have.
                 </p>
                 </div>
@@ -126,7 +161,9 @@ export default function Cta() {
 
 
             <div>
-                <button id ='ctaBtn'>View Inventory</button>
+                <button
+                    onClick={()=>push('/inventory')}
+                    id='ctaBtn'>View Inventory</button>
             </div>
 
             {/* <div id='shadowBox'></div> */}

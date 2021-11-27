@@ -13,10 +13,16 @@ background-size:cover;
 background-position:center;
 background-blend-mode: lighten;
 /* margin-top: -5%; */
+display:flex;
+justify-content: center;
+/* align-items:baseline; */
 #infoItem_container{
-    margin-top: 10%;
+    /* margin-top: 10%; */
     display: flex;
     flex-direction: column;
+    @media (min-width:992px){
+        text-align: left;
+    }
 }
 `
 
@@ -35,6 +41,10 @@ margin-top:5%;
 }
 .infoItemLink{
     color:red;
+}
+@media (min-width:992px){
+    margin-top:0;
+    margin-bottom: 16%;
 }
 
 `
@@ -57,9 +67,8 @@ const InfoItem = ({ title, p, cta,link }) => {
 export default function CompanyInfo() {
     return (
         <CompanyCont>
-            <UsedTags />
+            <UsedTags />   
             <div id='infoItem_container'>
-
             <InfoItem
                 title={"Buy,Sell, Trade"}
                 p={"We offer fair pricing  on vehicle trade ins"}
@@ -75,11 +84,6 @@ export default function CompanyInfo() {
                     // link={'contact'}
                 />
             </div>
-
-          
-           
-            
-            
         </CompanyCont>
     )
 }
